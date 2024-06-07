@@ -1,2 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
-@import "../node_modules/mini.css/dist/mini-dark.min.css";
+.style__general-container {
+  margin: 0 250px;
+}
+.cursor-pointer {
+  cursor: pointer;
+}

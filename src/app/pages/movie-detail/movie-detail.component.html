@@ -1,0 +1,61 @@
+<div class="style__general-container mt-4">
+  <a
+    class="cursor-pointer text-decoration-none text-dark"
+    type="btn"
+    (click)="goBack()"
+  >
+    <img
+      class="arrow-back-height"
+      src="../../../assets/icons/arrow-back.svg"
+      alt=""
+    />
+    <span>BACK</span>
+  </a>
+  <div *ngIf="movie">
+    <h2>{{ movie.title }}</h2>
+    <div class="d-flex">
+      <div class="col-3">
+        <img [src]="movie.poster" alt="{{ movie.title }}" class="poster-size" />
+      </div>
+      <div class="col-9">
+        <p><span class="fw-bold me-1">Summary:</span>{{ movie.summary }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center mt-4"><h4>Details</h4></div>
+  <table class="details-table mb-5">
+    <tr>
+      <td class="label">Box office</td>
+      <td class="value">${{ movie?.box_office }} million</td>
+    </tr>
+    <tr>
+      <td class="label">Budget</td>
+      <td class="value">${{ movie?.budget }} million</td>
+    </tr>
+    <tr>
+      <td class="label">Duration</td>
+      <td class="value">
+        <span *ngIf="movie && movie.duration">{{
+          convertMinutesToHoursAndMinutes(movie.duration)
+        }}</span
+        ><span></span>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Producers</td>
+      <td class="value">
+        <span *ngFor="let producer of movie?.producers">
+          {{ producer }}
+        </span>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Cinematographers</td>
+      <td class="value">
+        <span *ngFor="let cinematographer of movie?.cinematographers">
+          {{ cinematographer }}
+        </span>
+      </td>
+    </tr>
+  </table>
+</div>

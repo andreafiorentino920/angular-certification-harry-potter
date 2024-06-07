@@ -1,0 +1,55 @@
+<div class="style__general-container mt-3">
+  <h5>Filters</h5>
+  <div class="d-flex justify-content-between">
+    <div>
+      <label class="me-2" for="titleFilter">Title:</label>
+      <input
+        id="titleFilter"
+        type="text"
+        [(ngModel)]="titleFilter"
+        (input)="filterMovies()"
+        placeholder="Enter title"
+      />
+    </div>
+
+    <div class="ms-5">
+      <label class="me-2" for="releaseDateFilter">Release Year:</label>
+      <input
+        id="releaseDateFilter"
+        type="number"
+        [(ngModel)]="releaseDateFilter"
+        (input)="filterMovies()"
+        placeholder="Enter year"
+        maxlength="4"
+      />
+    </div>
+  </div>
+</div>
+<div class="style__general-container mt-4" *ngIf="filteredMovies?.length == 0">
+  <h4>Nessun risultato trovato</h4>
+</div>
+<ul *ngIf="filteredMovies" class="style__general-container mt-4 p-0">
+  <li
+    class="d-flex justify-content-between mt-2"
+    *ngFor="let movie of filteredMovies"
+  >
+    <div>
+      <h4>{{ movie.title }}</h4>
+      <p>
+        <span>Release date: {{ movie.release_date }} </span>
+        <span class="mx-3">Budget: ${{ movie.budget }} million</span>
+        <span
+          >Duration: {{ convertMinutesToHoursAndMinutes(movie.duration) }}</span
+        >
+      </p>
+    </div>
+    <div>
+      <button
+        (click)="goToMovieDetails(movie.id)"
+        class="btn btn-secondary detail-button"
+      >
+        DETAILS
+      </button>
+    </div>
+  </li>
+</ul>
