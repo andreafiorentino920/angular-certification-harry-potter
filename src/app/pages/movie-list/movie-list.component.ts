@@ -14,9 +14,9 @@ export class MovieListComponent {
   /** Subscription for the list of movies*/
   moviesSubscription$?: Subscription;
   /** List of movies*/
-  movies: IMovie[] = [];
+  movies: Partial<IMovie>[] = [];
   /**List of filtered movies */
-  filteredMovies?: IMovie[];
+  filteredMovies?: Partial<IMovie>[];
   /**Input title filter */
   titleFilter?: string;
   /**Input release date filter */
@@ -48,12 +48,14 @@ export class MovieListComponent {
   /**Method to filter movies by title and release date */
   filterMovies() {
     this.filteredMovies = this.movies.filter((movie) => {
-      const matchesTitle = this.titleFilter
-        ? movie.title.toLowerCase().includes(this.titleFilter.toLowerCase())
-        : true;
-      const matchesReleaseDate = this.releaseDateFilter
-        ? movie.release_date.startsWith(this.releaseDateFilter)
-        : true;
+      const matchesTitle: boolean =
+        this.titleFilter && movie?.title
+          ? movie.title.toLowerCase().includes(this.titleFilter.toLowerCase())
+          : true;
+      const matchesReleaseDate: boolean =
+        this.releaseDateFilter && movie?.release_date
+          ? movie.release_date.startsWith(this.releaseDateFilter)
+          : true;
       return matchesTitle && matchesReleaseDate;
     });
   }

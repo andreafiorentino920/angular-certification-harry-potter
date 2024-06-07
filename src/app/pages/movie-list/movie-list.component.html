@@ -38,12 +38,12 @@
       <p>
         <span>Release date: {{ movie.release_date }} </span>
         <span class="mx-3">Budget: ${{ movie.budget }} million</span>
-        <span
+        <span *ngIf="movie && movie.duration"
           >Duration: {{ convertMinutesToHoursAndMinutes(movie.duration) }}</span
         >
       </p>
     </div>
-    <div>
+    <div *ngIf="movie && movie.id">
       <button
         (click)="goToMovieDetails(movie.id)"
         class="btn btn-secondary detail-button"

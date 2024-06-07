@@ -25,7 +25,7 @@ export class MovieDetailComponent implements OnDestroy {
   ngOnInit(): void {
     /**Check if id is in route param and call get movie by id service */
     this.paramSubscription$ = this.route.paramMap.subscribe((params) => {
-      const id = params.get('id');
+      const id: string | null = params.get('id');
       if (id) {
         this.getMovieById(id);
       }
